@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/dejar" method="POST">
+        <input type="text" name="nombre"/>
+        <input type="number" name="edad"/>
+        <input type="text" name="tipo"/>
+        <button type="submit">Enviar</button>
+
+    </form>
+    <div id="show"></div>
+
+    <script>
+        fetch("http://localhost:3009/animales").then((res)=>res.json()).then((datos)=>{
+            let info = "";
+            for(i=0;i<datos.length;i++){
+                info += `<li>${datos[i].nombre}
+                    <form action="/adoptar">
+                        <input name="nombre" type="hidden" value="${datos[i].nombre}/>
+                        <button tyoe="submit">Adoptar</button> 
+                        </form>
+                        </li>`
+            }
+            document.getElementById("show").innerHTML= `<ul>${info}</ul>`
+        })
+    </script>
+</body>
+</html>
+<li>${data[i].nombre}  <form action="/adoptar">
+    <input name="nombre" type="hidden" value="${data[i].nombre}"/>
+    <button type="submit">Adoptar</button>
+    </form>
+    </li>`
